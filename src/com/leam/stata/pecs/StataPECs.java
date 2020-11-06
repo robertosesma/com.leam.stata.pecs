@@ -252,23 +252,20 @@ public class StataPECs {
     		    PDAcroForm form = pdf.getDocumentCatalog().getAcroForm();
     	        if (form.getFields().size()>0) {
                 	PDCheckBox honor = (PDCheckBox) form.getField("HONOR");
-                	if (honor.isChecked()) {
-                		Data.storeNum(Data.getVarIndex("hPEC1"), obs, 1);
-                		
-                		int j = 64 + preguntas;
-                		for (int i=65; i<=j; i++) {
-                			String n = "P01_"+String.valueOf((char)i);
-                			String r = "R01_"+String.valueOf((char)i);
-                			if (!form.getField(n).getValueAsString().isEmpty()) {
-                				String v = form.getField(n).getValueAsString().replace(",", ".");
-                				Data.storeNum(Data.getVarIndex(r), obs, Double.parseDouble(v));
-                			} else {
-                				Data.storeNum(Data.getVarIndex(r), obs, Missing.getValue());
-                			}
-                		}
-                	} else {
-                		Data.storeNum(Data.getVarIndex("hPEC1"), obs, 0);
-                	}
+                	if (honor.isChecked()) Data.storeNum(Data.getVarIndex("hPEC1"), obs, 1);
+                	else Data.storeNum(Data.getVarIndex("hPEC1"), obs, 0);
+            		            		
+            		int j = 64 + preguntas;
+            		for (int i=65; i<=j; i++) {
+            			String n = "P01_"+String.valueOf((char)i);
+            			String r = "R01_"+String.valueOf((char)i);
+            			if (!form.getField(n).getValueAsString().isEmpty()) {
+            				String v = form.getField(n).getValueAsString().replace(",", ".");
+            				Data.storeNum(Data.getVarIndex(r), obs, Double.parseDouble(v));
+            			} else {
+            				Data.storeNum(Data.getVarIndex(r), obs, Missing.getValue());
+            			}
+            		}
     	        }
     	        
     	        form = null;
