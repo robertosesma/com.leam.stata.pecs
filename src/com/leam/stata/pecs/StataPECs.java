@@ -171,6 +171,7 @@ public class StataPECs {
 		                			lines.add("capture erase " + d + ".dta");
 		                		}
 		                	}
+		                	lines.add("scalar drop _all\n");
 	                		lines.add("clear\n");
 		                }
 		                
