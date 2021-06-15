@@ -193,7 +193,8 @@ public class StataPECs {
 				    						// si acción es 2 Test, añadir el código para comprobar
 				    						if (accion==2) {
 				    							lines.add("preserve");
-				    							lines.add("rename * _*, lower");
+				    							String t = ( Data.getStr(ip1,i).indexOf("_") >= 0 ? "* _*" : "*" );
+				    							lines.add("rename " + t + ", lower");
 				    							lines.add("capture noisily cf " + Data.getStr(ip1,i) +
 				    									" using " + Data.getStr(ip2,i) + ", all verbose");
 				    							lines.add("restore\n");
