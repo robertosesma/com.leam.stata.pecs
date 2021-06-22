@@ -85,6 +85,9 @@ public class StataPECs {
         		}
         		Data.storeNum(Data.getVarIndex(p.replace("P", "w")),obs,punt);
 			}
+	        form = null;
+	        pdf.close();
+	        pdf = null;
 		} catch (Exception e) {
 			SFIToolkit.errorln("error getting PEC data");
 			SFIToolkit.errorln("(" + e.getMessage() + ")");
@@ -113,6 +116,9 @@ public class StataPECs {
 	        } else {
 	        	SFIToolkit.executeCommand("qui replace problema = 1 if DNI==\""+dni+"\"",false);
 	        }
+	        form = null;
+	        pdf.close();
+	        pdf = null;
 		} catch (Exception e) {
 			SFIToolkit.errorln("error getting PEC data");
 			SFIToolkit.errorln("(" + e.getMessage() + ")");
@@ -224,6 +230,10 @@ public class StataPECs {
 	    	        }
 	    	        // grabar archivo do
 	    	        Files.write(Paths.get(sint+ "/" + dni + ".do"), lines, Charset.forName("UTF-8"));
+	    	        
+	    	        form = null;
+	    	        pdf.close();
+	    	        pdf = null;
 	    	        
 	            	SFIToolkit.displayln("Procesando PEC: " + dni);
 	            }
